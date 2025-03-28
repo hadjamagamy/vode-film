@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetflixClone - Nouveautés</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-black text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-gradient-to-b from-black via-black/90 to-transparent z-50">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <div class="text-red-600 text-3xl font-bold">NETFLIXCLONE</div>
+                <ul class="hidden md:flex space-x-6">
+                    <li><a href="index.html" class="hover:text-gray-300">Accueil</a></li>
+                    <li><a href="series.html" class="hover:text-gray-300">Séries</a></li>
+                    <li><a href="films.html" class="hover:text-gray-300">Films</a></li>
+                    <li><a href="nouveautes.html" class="text-white font-bold">Nouveautés</a></li>
+                    <li><a href="ma-liste.html" class="hover:text-gray-300">Ma Liste</a></li>
+                </ul>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <button id="searchToggle" class="text-white hover:text-gray-300">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div id="searchBar" class="hidden absolute right-0 top-10 bg-black/90 p-2 rounded-lg w-64">
+                        <input type="search" placeholder="Titres, personnes, genres" 
+                               class="w-full px-4 py-2 rounded bg-gray-800 text-white">
+                    </div>
+                </div>
+                <div class="relative group">
+                    <button class="flex items-center space-x-2 hover:text-gray-300">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" 
+                             alt="Profile" 
+                             class="w-8 h-8 rounded-full">
+                        <i class="fas fa-caret-down group-hover:rotate-180 transition-transform"></i>
+                    </button>
+                    <div class="hidden group-hover:block absolute right-0 top-full mt-2 bg-black/90 rounded-lg overflow-hidden">
+                        <ul class="w-48">
+                            <li><a href="#profile" class="block px-4 py-2 hover:bg-gray-800">Profil</a></li>
+                            <li><a href="#account" class="block px-4 py-2 hover:bg-gray-800">Compte</a></li>
+                            <li><a href="#help" class="block px-4 py-2 hover:bg-gray-800">Centre d'aide</a></li>
+                            <li><hr class="border-gray-600 my-1"></li>
+                            <li><a href="#logout" class="block px-4 py-2 hover:bg-gray-800">Se déconnecter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative h-screen">
+        <img src="https://image.tmdb.org/t/p/original/vEUskNThXgE66d2hH0BnvVJ5NOa.jpg" 
+             alt="Hero Background" 
+             class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-20">
+            <div class="mb-4 inline-block bg-white/20 text-white px-3 py-1 rounded-md">Nouveauté</div>
+            <img src="https://image.tmdb.org/t/p/original/kxTKz2Wd0XULKe4uETqObT0xjCx.png" 
+                 alt="Movie Title" 
+                 class="w-96 mb-6">
+            <p class="text-xl mb-6 max-w-2xl">Un parrain de la mafia est sur le point de se retirer lorsque la famille est menacée d'extinction. Son fils et héritier présumé doit s'adapter rapidement pour protéger sa famille.</p>
+            <div class="flex space-x-4">
+                <button class="bg-white text-black px-8 py-3 rounded-lg text-xl hover:bg-gray-200 flex items-center" id="playButton">
+                    <i class="fas fa-play mr-2"></i> Lecture
+                </button>
+                <button class="bg-gray-500/50 text-white px-8 py-3 rounded-lg text-xl hover:bg-gray-500/70 flex items-center" id="infoButton">
+                    <i class="fas fa-info-circle mr-2"></i> Plus d'infos
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Content Section -->
+    <section class="py-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">Ajoutés cette semaine</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" id="newThisWeek">
+                <!-- Contenu sera ajouté dynamiquement -->
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">À venir prochainement</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" id="comingSoon">
+                <!-- Contenu sera ajouté dynamiquement -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section class="py-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">Calendrier des sorties</h2>
+            <div class="bg-zinc-900 p-6 rounded-lg">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Mars -->
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Mars 2025</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start space-x-3">
+                                <span class="bg-red-600 text-white px-3 py-1 rounded-md">15</span>
+                                <div>
+                                    <h4 class="font-bold">Stranger Things S5</h4>
+                                    <p class="text-gray-400 text-sm">Série • Science Fiction</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="bg-red-600 text-white px-3 py-1 rounded-md">22</span>
+                                <div>
+                                    <h4 class="font-bold">Joker: Folie à Deux</h4>
+                                    <p class="text-gray-400 text-sm">Film • Thriller</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Juin -->
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Juin 2025</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start space-x-3">
+                                <span class="bg-red-600 text-white px-3 py-1 rounded-md">5</span>
+                                <div>
+                                    <h4 class="font-bold">The Last of Us S2</h4>
+                                    <p class="text-gray-400 text-sm">Série • Drame</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="bg-red-600 text-white px-3 py-1 rounded-md">18</span>
+                                <div>
+                                    <h4 class="font-bold">Dune 3</h4>
+                                    <p class="text-gray-400 text-sm">Film • Science Fiction</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Décembre -->
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Décembre 2025</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start space-x-3">
+                                <span class="bg-red-600 text-white px-3 py-1 rounded-md">10</span>
+                                <div>
+                                    <h4 class="font-bold">Avatar 3</h4>
+                                    <p class="text-gray-400 text-sm">Film • Science Fiction</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="bg-red-600 text-white px-3 py-1 rounded-md">25</span>
+                                <div>
+                                    <h4 class="font-bold">The Witcher S4</h4>
+                                    <p class="text-gray-400 text-sm">Série • Fantasy</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal pour les détails -->
+    <div id="movieModal" class="hidden fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
+        <div class="bg-zinc-900 rounded-lg max-w-4xl w-full mx-4 overflow-hidden">
+            <div class="relative">
+                <div id="modalBackdrop" class="w-full h-96 bg-cover bg-center"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent"></div>
+                <button onclick="closeModal()" class="absolute top-4 right-4 text-white/80 hover:text-white bg-black/40 p-2 rounded-full">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-8">
+                <div id="modalContent"></div>
+                <div class="mt-8">
+                    <h4 class="text-xl font-bold mb-4">À propos</h4>
+                    <div id="modalDetails" class="text-gray-400"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-black/50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-gray-400 font-bold mb-4">Audio et sous-titres</h3>
+                    <ul class="space-y-2 text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300">Centre des médias</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Confidentialité</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Nous contacter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-gray-400 font-bold mb-4">Aide</h3>
+                    <ul class="space-y-2 text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300">FAQ</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Compte</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Centre d'aide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-gray-400 font-bold mb-4">Relations Investisseurs</h3>
+                    <ul class="space-y-2 text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300">Emplois</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Conditions des cartes cadeaux</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-gray-400 font-bold mb-4">Légal</h3>
+                    <ul class="space-y-2 text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300">Mentions légales</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Préférences de cookies</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Informations légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-500">
+                <p>© 2024 NetflixClone. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="public/js/nouveautes.js"></script>
+</body>
+</html>

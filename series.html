@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetflixClone - Séries</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-black text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-gradient-to-b from-black via-black/90 to-transparent z-50">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <div class="text-red-600 text-3xl font-bold">NETFLIXCLONE</div>
+                <ul class="hidden md:flex space-x-6">
+                    <li><a href="index.html" class="hover:text-gray-300">Accueil</a></li>
+                    <li><a href="series.html" class="text-white font-bold">Séries</a></li>
+                    <li><a href="films.html" class="hover:text-gray-300">Films</a></li>
+                    <li><a href="nouveautes.html" class="hover:text-gray-300">Nouveautés</a></li>
+                    <li><a href="ma-liste.html" class="hover:text-gray-300">Ma Liste</a></li>
+                </ul>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <button id="searchToggle" class="text-white hover:text-gray-300">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div id="searchBar" class="hidden absolute right-0 top-10 bg-black/90 p-2 rounded-lg w-64">
+                        <input type="search" placeholder="Titres, personnes, genres" 
+                               class="w-full px-4 py-2 rounded bg-gray-800 text-white">
+                    </div>
+                </div>
+                <div class="relative group">
+                    <button class="flex items-center space-x-2 hover:text-gray-300">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" 
+                             alt="Profile" 
+                             class="w-8 h-8 rounded-full">
+                        <i class="fas fa-caret-down group-hover:rotate-180 transition-transform"></i>
+                    </button>
+                    <div class="hidden group-hover:block absolute right-0 top-full mt-2 bg-black/90 rounded-lg overflow-hidden">
+                        <ul class="w-48">
+                            <li><a href="#profile" class="block px-4 py-2 hover:bg-gray-800">Profil</a></li>
+                            <li><a href="#account" class="block px-4 py-2 hover:bg-gray-800">Compte</a></li>
+                            <li><a href="#help" class="block px-4 py-2 hover:bg-gray-800">Centre d'aide</a></li>
+                            <li><hr class="border-gray-600 my-1"></li>
+                            <li><a href="#logout" class="block px-4 py-2 hover:bg-gray-800">Se déconnecter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative h-screen">
+        <img src="https://image.tmdb.org/t/p/original/56v2KjBlU4XaOv9rVYEQypROD7P.jpg" 
+             alt="Hero Background" 
+             class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-20">
+            <img src="https://image.tmdb.org/t/p/original/4XddcRDtnNjYmLRMYpbrhFxsbuq.png" 
+                 alt="Series Title" 
+                 class="w-96 mb-6">
+            <p class="text-xl mb-6 max-w-2xl">Dans la ville fictive de Hawkins, un groupe d'amis se retrouve confronté à des forces surnaturelles lorsqu'un jeune garçon disparaît mystérieusement.</p>
+            <div class="flex space-x-4">
+                <button class="bg-white text-black px-8 py-3 rounded-lg text-xl hover:bg-gray-200 flex items-center">
+                    <i class="fas fa-play mr-2"></i> Lecture
+                </button>
+                <button class="bg-gray-500/50 text-white px-8 py-3 rounded-lg text-xl hover:bg-gray-500/70 flex items-center">
+                    <i class="fas fa-info-circle mr-2"></i> Plus d'infos
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories -->
+    <section class="py-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">Séries populaires</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" id="popular">
+                <!-- Séries seront ajoutées ici dynamiquement -->
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">Drames</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" id="drama">
+                <!-- Séries seront ajoutées ici dynamiquement -->
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">Science-Fiction</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" id="scifi">
+                <!-- Séries seront ajoutées ici dynamiquement -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal pour les détails de la série -->
+    <div id="movieModal" class="hidden fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
+        <div class="bg-zinc-900 rounded-lg max-w-4xl w-full mx-4 overflow-hidden">
+            <div class="relative">
+                <div id="modalBackdrop" class="w-full h-96 bg-cover bg-center"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent"></div>
+                <button onclick="closeModal()" class="absolute top-4 right-4 text-white/80 hover:text-white bg-black/40 p-2 rounded-full">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-8">
+                <div id="modalContent"></div>
+                <div class="mt-8">
+                    <h4 class="text-xl font-bold mb-4">À propos de cette série</h4>
+                    <div id="modalDetails" class="text-gray-400"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-black/50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-gray-400 font-bold mb-4">Audio et sous-titres</h3>
+                    <ul class="space-y-2 text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300">Centre des médias</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Confidentialité</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Nous contacter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-gray-400 font-bold mb-4">Aide</h3>
+                    <ul class="space-y-2 text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300">FAQ</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Compte</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Centre d'aide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-gray-400 font-bold mb-4">Relations Investisseurs</h3>
+                    <ul class="space-y-2 text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300">Emplois</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Conditions des cartes cadeaux</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-gray-400 font-bold mb-4">Légal</h3>
+                    <ul class="space-y-2 text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300">Mentions légales</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Préférences de cookies</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Informations légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-500">
+                <p>© 2024 NetflixClone. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="public/js/series.js"></script>
+</body>
+</html>
