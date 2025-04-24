@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Rediriger la racine vers /frontend/index.php
+RewriteCond %{REQUEST_URI} ^/$
+RewriteRule ^$ /frontend/index.php [L,R=302]
+
+# Rediriger /frontend/ vers /frontend/index.php
+RewriteCond %{REQUEST_URI} ^/frontend/$
+RewriteRule ^frontend/$ /frontend/index.php [L,R=302]
+
+# Assurer que les fichiers et dossiers existants ne sont pas affectés
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d

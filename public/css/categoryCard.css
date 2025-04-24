@@ -1,0 +1,12 @@
+/* Styles pour limiter à 2 lignes le titre des films */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Assurer une transition fluide sur l'image */
+  .group:hover img {
+    transition-duration: 300ms;
+  }
